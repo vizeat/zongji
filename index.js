@@ -25,7 +25,7 @@ function ZongJi(dsn, options) {
   this.ready = false;
   this.useChecksum = false;
 
-  this._init();
+  this._init(options.binlogOptions);
 }
 
 var cloneObjectSimple = function(obj){
@@ -40,11 +40,11 @@ var cloneObjectSimple = function(obj){
 
 util.inherits(ZongJi, EventEmitter);
 
-ZongJi.prototype._init = function() {
+ZongJi.prototype._init = function(options) {
   var self = this;
-  var binlogOptions = {
+  var binlogOptions = Object.assign({}, options, {
     tableMap: self.tableMap,
-  };
+  });
 
   var asyncMethods = [
     {
