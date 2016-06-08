@@ -5,7 +5,8 @@ var generateBinlog = require('./lib/sequence/binlog');
 
 function ZongJi(dsn, options) {
   this.set(options);
-
+  options = Object.assign({}, options);
+  options.binlogOptions = Object.assign({}, options.binlogOptions);
   EventEmitter.call(this);
 
   // to send table info query
